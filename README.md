@@ -19,6 +19,10 @@ sudo apt update
 sudo apt install mysql-server
 mysql_secure_installation
 ```
+```bash
+systemctl start mysql
+systemctl enable mysql
+```
 
 #### MongoDB
 ```bash
