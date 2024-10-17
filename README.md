@@ -1,11 +1,17 @@
 # restore-api-server
 just documenting how to restore my server
 
-#### MySQL 
+### Update System
+```bash
+apt update
+apt upgrade
 ```
+
+#### MySQL 
+```bash
 wget -qO - https://dev.mysql.com/doc/refman/8.0/en/checking-gpg-signature.html | grep -oP 'gpg_key=\K[^\"]+' | xargs -I {} sudo apt-key adv --fetch-keys {}
 ```
-```
+```bash
 wget https://dev.mysql.com/get/mysql-apt-config_0.8.22-1_all.deb
 sudo dpkg -i mysql-apt-config_0.8.22-1_all.deb
 sudo apt update
@@ -13,7 +19,7 @@ sudo apt install mysql-server
 ```
 
 #### MongoDB
-```
+```bash
 wget -qO - https://www.mongodb.org/static/pgp/server-6.0.asc | sudo apt-key add -
 echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/debian $(lsb_release -cs)/mongodb-org/6.0 main" | sudo tee /etc/apt/sources.list.d/mongodb-org-6.0.list
 sudo apt update
@@ -23,7 +29,7 @@ sudo systemctl enable mongod
 ```
 
 #### Node
-```
+```bash
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.4/install.sh | bash
 
 export NVM_DIR="$HOME/.nvm"
@@ -35,7 +41,7 @@ nvm install 20
 ```
 
 #### Puppetteer Dependencies
-```
+```bash
 apt-get update && apt-get install -y \
     chromium \
     --no-install-recommends \
@@ -56,3 +62,29 @@ sudo apt-get update
 sudo apt-get install -y libgbm-dev
 ```
 
+#### Nginx
+```bash
+apt install nginx -y
+systemctl start nginx
+systemctl enable nginx
+nginx -t
+```
+
+#### SSL Cert
+```bash
+sudo apt install certbot python3-certbot-nginx
+```
+
+#### WinSCP / CLI SCP
+```bash
+mkdir alooow
+cd alooow
+scp root@ip:/root/dir /root/alooow
+```
+
+#### Installation
+##### Extract
+```bash
+tar -xzvf VPS-SERVER-BACKUP-[DATE].tar.tar.gz
+cp -r * /
+```
