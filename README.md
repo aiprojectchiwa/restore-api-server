@@ -148,6 +148,7 @@ pm2 start alo.js
 
 ###### WHATSAPP API SERVER
 ```
+cd /var/www/staging-api/gemini-bot-wa
 pm2 start connect.js
 ```
 
