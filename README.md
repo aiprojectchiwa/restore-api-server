@@ -97,4 +97,21 @@ scp root@ip:/root/dir /root/alooow
 ```bash
 tar -xzvf VPS-SERVER-BACKUP-[DATE].tar.tar.gz
 cp -r * /
+# ls
+# mysql_all_databases.sql www/www/* nginx-sites-available otakudesu letsencrypt mongodb/anime_db
+```
+```bash
+cp -r otakudesu ../
+cp -r letsencrypt /etc/letsencrypt
+cp -r www/www/* /
+```
+
+##### Databases Restore
+###### MongoDB
+```
+mongorestore --db anime_db ./mongodb/anime_db
+```
+###### MySQL
+```
+mysql -u root -p < mysql_all_databases.sql
 ```
