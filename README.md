@@ -160,7 +160,7 @@ pm2 start pay.js
 
 ###### ANIMESEACRH SERVER
 ```
-/var/www/animesearch/backend-chiw
+cd /var/www/animesearch/backend-chiw
 pm2 start server.js
 ```
 
