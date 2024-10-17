@@ -93,6 +93,7 @@ scp root@ip:/root/dir /root/alooow
 ```
 
 #### Installation
+
 ##### Extract
 ```bash
 tar -xzvf VPS-SERVER-BACKUP-[DATE].tar.tar.gz
@@ -102,16 +103,100 @@ cp -r * /
 ```
 ```bash
 cp -r otakudesu ../
-cp -r letsencrypt /etc/letsencrypt
+cp -r letsencrypt /etc/
 cp -r www/www/* /
 ```
 
 ##### Databases Restore
 ###### MongoDB
-```
+
+```bash
 mongorestore --db anime_db ./mongodb/anime_db
 ```
 ###### MySQL
-```
+```bash
 mysql -u root -p < mysql_all_databases.sql
 ```
+##### 
+
+##### Install PM2
+```bash
+npm i pm2 -g
+```
+
+##### Modules & Dependencies Fixing
+```
+cd /var/www/api/backend
+npx puppeteer browsers install chrome
+cd /var/www/staging-api/gemini-bot-wa
+npm i
+npm i express
+```
+
+##### Starting the Server
+
+###### API SERVER
+```
+cd /var/www/api/backend
+pm2 start server.js
+```
+
+###### STAGING SERVER
+```
+cd /var/www/staging-api
+pm2 start alo.js
+```
+
+###### WHATSAPP API SERVER
+```
+pm2 start connect.js
+```
+
+###### PAYMENT SERVER
+```
+cd /var/www/pay
+node connect.js
+```
+
+###### ANIMESEACRH SERVER
+```
+/var/www/animesearch/backend-chiw
+pm2 start server.js
+```
+
+###### TRANSLATER SERVER
+```
+apt install git
+cd
+git clone https://github.com/Songkeys/translateer.git
+cd translateer
+npm install
+npm run build
+pm2 start npm --name "translateer" -- run start
+```
+
+###### DOCKER SERVER
+```
+sudo apt-get install apt-transport-https ca-certificates curl software-properties-common
+curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/debian $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+sudo apt update
+sudo apt install docker-ce docker-ce-cli containerd.io
+
+docker pull hlohaus789/g4f
+docker run -d \
+  -p 8080:8080 -p 1337:1337 -p 7900:7900 \
+  --shm-size="2g" \
+  -v ${PWD}/har_and_cookies:/app/har_and_cookies \
+  -v ${PWD}/generated_images:/app/generated_images \
+  hlohaus789/g4f:latest
+```
+
+###### ENSURE THERE'SNT AN ERROR
+```
+pm2 logs
+```
+
+##### Starting the Server
