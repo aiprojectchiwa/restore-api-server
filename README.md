@@ -104,8 +104,8 @@ cp -r * /
 ```bash
 cp -r otakudesu ../
 cp -r letsencrypt /etc/
-cp -r www/www/* /
-cp -r nginx-sites-available/* /etc/nginx/sites-available/*
+cp -r www/www/* /var/www/
+cp -r nginx-sites-available/* /etc/nginx/sites-available/
 ```
 
 ### Databases Restore
