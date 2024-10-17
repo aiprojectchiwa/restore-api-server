@@ -7,6 +7,7 @@ apt update
 apt upgrade
 ```
 
+### Install the Database Framework
 #### MySQL 
 ```bash
 wget -qO - https://dev.mysql.com/doc/refman/8.0/en/checking-gpg-signature.html | grep -oP 'gpg_key=\K[^\"]+' | xargs -I {} sudo apt-key adv --fetch-keys {}
@@ -38,6 +39,7 @@ sudo systemctl start mongod
 sudo systemctl enable mongod
 ```
 
+### Installing the Server Dependencies
 #### Node
 ```bash
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.4/install.sh | bash
@@ -92,9 +94,7 @@ cd alooow
 scp root@ip:/root/dir /root/alooow
 ```
 
-#### Installation
-
-##### Extract
+### Restore
 ```bash
 tar -xzvf VPS-SERVER-BACKUP-[DATE].tar.tar.gz
 cp -r * /
@@ -105,9 +105,10 @@ cp -r * /
 cp -r otakudesu ../
 cp -r letsencrypt /etc/
 cp -r www/www/* /
+cp -r nginx-sites-available/* /etc/nginx/sites-available/*
 ```
 
-##### Databases Restore
+### Databases Restore
 ###### MongoDB
 
 ```bash
@@ -117,7 +118,6 @@ mongorestore --db anime_db ./mongodb/anime_db
 ```bash
 mysql -u root -p < mysql_all_databases.sql
 ```
-##### 
 
 ##### Install PM2
 ```bash
@@ -199,4 +199,9 @@ docker run -d \
 pm2 logs
 ```
 
-##### Starting the Server
+### Starting the WebServer
+```
+ln -s /etc/nginx/sites-available/* /etc/nginx/sites-enabled/
+systemctl restart nginx
+nginx -t
+```
