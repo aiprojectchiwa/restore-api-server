@@ -155,7 +155,7 @@ pm2 start connect.js
 ###### PAYMENT SERVER
 ```
 cd /var/www/pay
-node connect.js
+pm2 start pay.js
 ```
 
 ###### ANIMESEACRH SERVER
