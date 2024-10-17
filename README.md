@@ -10,12 +10,14 @@ apt upgrade
 #### MySQL 
 ```bash
 wget -qO - https://dev.mysql.com/doc/refman/8.0/en/checking-gpg-signature.html | grep -oP 'gpg_key=\K[^\"]+' | xargs -I {} sudo apt-key adv --fetch-keys {}
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys B7B3B788A8D3785C
 ```
 ```bash
 wget https://dev.mysql.com/get/mysql-apt-config_0.8.22-1_all.deb
 sudo dpkg -i mysql-apt-config_0.8.22-1_all.deb
 sudo apt update
 sudo apt install mysql-server
+mysql_secure_installation
 ```
 
 #### MongoDB
